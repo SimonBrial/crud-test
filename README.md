@@ -23,5 +23,10 @@
             - La cantidad de post en total es de 100!!!
         - Crear parte de la interfaz, como por ejemplo: 'Header'. (DONE)
         - Agregar la estructura basica de la tabla para poder mostrar los post traidos de la api. (DONE)
-        - Crear el formulario para la edicion o creacioin de los registro traidos por la API.
+        - Crear el formulario para la edicion o creacioin de los registro traidos por la API. (DONE)
+        - Agregar la logica al formulario con react-hook-form. (DONE)
+            - Docs url: `https://react-hook-form.com/get-started/`
+        - Se implemento la manipulacion de datos en el formulario, ahora falta coordinar las rutas de acceso para cambiar de color el boton para enviar lkos datos del formulario.
+        - Se debe implementar la logica para traer todos los posts y mostrarlos en la tabla.
+        
     

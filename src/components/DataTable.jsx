@@ -1,4 +1,5 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
+import Axios from 'axios';
 import {
     Table,
     TableContainer,
@@ -51,6 +52,19 @@ const rows = [
 ];
 
 const DataTable = () =>  {
+
+    const [posts, setPosts] = useState();
+
+    useEffect(() => {
+        const URL_GET = 'https://jsonplaceholder.typicode.com/posts';
+
+        Axios.get(URL_GET)
+            .then(response => setPosts(response.data))
+            .catch(err => console.log(err))
+    }, [])
+
+    console.log(posts)
+
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
