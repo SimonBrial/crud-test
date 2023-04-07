@@ -1,4 +1,5 @@
-import React from 'react';
+import { useState } from 'react';
+import Axios from 'axios';
 import {
     Stack,
     styled,
@@ -32,21 +33,22 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-const TBody = ({ rows }) => {
+const TBody = ({ rows, onDelete }) => {
+
     return (
         <TableBody>
-            {rows.map((row) => (
-                <StyledTableRow key={row.id}>
-                    <StyledTableCell align="center">{row.id}</StyledTableCell>
-                    <StyledTableCell align="center">{row.userId}</StyledTableCell>
-                    <StyledTableCell align="center">{row.title}</StyledTableCell>
-                    <StyledTableCell align="center">{row.body}</StyledTableCell>
+            {rows.map((post) => (
+                <StyledTableRow key={post.id}>
+                    <StyledTableCell align="center">{post.id}</StyledTableCell>
+                    <StyledTableCell align="center">{post.userId}</StyledTableCell>
+                    <StyledTableCell align="center">{post.title}</StyledTableCell>
+                    <StyledTableCell align="center">{post.body}</StyledTableCell>
                     <StyledTableCell align="center">
                         <Stack direction={'column'} spacing={1}>
                             <FormModal colorBtn={'warning'} route={'edit'}>
                                 <EditIcon />
                             </FormModal>
-                            <BtnAction color={'error'} handle={() => console.log('From Delete button')}>
+                            <BtnAction color={'error'} handle={() => onDelete(post.id)}>
                                 <DeleteIcon />
                             </BtnAction>
                         </Stack>
