@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import Axios from 'axios';
 import {
     FormHelperText,
     FormControl,
@@ -16,30 +17,52 @@ import EditIcon from '@mui/icons-material/Edit';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const Form = ({ back }) => {
+
+
     // --- Form logic ---
-    const { register, handleSubmit, watch } = useForm();
-    const onSubmit = (data) => console.log(data)
+    const { register, handleSubmit } = useForm();
+
+    const createPost = async (post) => {
+        const URL_CREATE = 'https://jsonplaceholder.typicode.com/posts';
+        Axios(URL_CREATE, {
+            method: 'POST',
+            data: {
+                post: post
+            }
+        })
+        .then((response) => {console.log(response)})
+        .catch((error) => {console.log(error)});
+    };
+
+    const onSubmit = (data) => {
+        createPost(data)
+        navigation('/')
+        console.log(data)
+    };
+
     // --- Form logic ---
 
     // --- Select input logic ---
-    const [age, setAge] = useState('');
+    const [userId, setUserId] = useState('');
 
     const handleChange = (event) => {
-        setAge(event.target.value);
+        setUserId(event.target.value);
     };
     // --- Select input logic ---
 
     // --- Navigation logic ---
-    //const navigation = useNavigate();
+    const navigation = useNavigate();
 
     // --- Navigation logic ---
 
     return (
-        //onSubmit={handleSubmit(onSubmit)}
         <form onSubmit={handleSubmit(onSubmit)}>
-            <Stack spacing={2} sx={{
-                padding: '1rem'
-            }}>
+            <Stack
+                spacing={2}
+                sx={{
+                    padding: '1rem'
+                }}
+            >
                 <Typography
                     id="modal-modal-title"
                     variant="h5"
@@ -56,7 +79,7 @@ const Form = ({ back }) => {
                     <FormControl sx={{ m: 1, width: '75%' }}>
                         <Select
                             {...register('userId')}
-                            value={age}
+                            value={userId}
                             onChange={handleChange}
                             displayEmpty
                             inputProps={{ 'aria-label': 'Without label' }}

@@ -45,7 +45,7 @@ const TBody = ({ rows, onDelete }) => {
                     <StyledTableCell align="center">{post.body}</StyledTableCell>
                     <StyledTableCell align="center">
                         <Stack direction={'column'} spacing={1}>
-                            <FormModal colorBtn={'warning'} route={'edit'}>
+                            <FormModal colorBtn={'warning'} route={'edit'} routeBack={'/'}>
                                 <EditIcon />
                             </FormModal>
                             <BtnAction color={'error'} handle={() => onDelete(post.id)}>

@@ -7,25 +7,31 @@ import {
 import { BtnAction } from './BtnAction';
 import { Form } from './Form';
 
-const FormModal = ({ desc, route, children, colorBtn }) => {
+const FormModal = ({ 
+    desc, 
+    routeTo, 
+    routeBack, 
+    children, 
+    colorBtn
+}) => {
 
     // --- Modal logic ---
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
 
-    const prueba = () => {
-        console.log('prueba')
-    }
-
     const handleOpen = () => {
         setOpen(true)
-        navigate(route)
+        navigate(routeTo)
     };
+    
+    
     const handleClose = () => {
         setOpen(false);
-        navigate('/')
+        navigate(routeBack)
     };
     // --- Modal logic ---
+
+    
 
     return (
         <div>
@@ -54,7 +60,7 @@ const FormModal = ({ desc, route, children, colorBtn }) => {
                         p: 4,
                         borderRadius: '8px',
                     }}>
-                    <Form back={handleClose}/>
+                    <Form back={handleClose} />
                 </Box>
             </Modal>
         </div>
